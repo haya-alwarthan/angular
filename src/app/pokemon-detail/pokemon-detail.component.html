@@ -1,0 +1,41 @@
+        <img  class="img_pokemon"
+        [src]="pokemon.sprites.front_default" alt="Photo of a pokemon">
+        <div class="head_info">
+        <h2 class="id_heading" >N&deg;{{pokemon.id }}</h2>
+        <h1 class="name_heading">{{pokemon.name | titlecase}}</h1>
+    </div>
+        <div class="type-container">
+        <div   *ngFor="let abl of pokemon.types;let i=index" 
+        [class.one]="pokemon.types.length==1 || i==2"
+        [style.backgroundColor]="typeBacks[i]"
+        [style.color]="typeColors[i]"
+        >
+            {{abl.type.name|uppercase}}
+        </div>
+        </div>
+
+        <h2>ABILITIES</h2>
+        <div class="type-container ability-container">
+            <div   *ngFor="let abl of pokemon.abilities;let i=index" 
+            [style.borderColor]="abilityColors[i]"
+            [style.color]="abilityColors[i]"
+            >
+                {{abl.ability.name}}
+            </div>
+            </div>
+
+            <mat-grid-list cols="2" rowHeight="4:1" class="info_grid">
+                <mat-grid-tile>  HEIGHT </mat-grid-tile>
+                <mat-grid-tile>  WEIGHT </mat-grid-tile>
+                <mat-grid-tile> {{pokemon.height /10 | number: '1.1-2'}} m  </mat-grid-tile>
+                <mat-grid-tile> {{pokemon.weight / 100}} g </mat-grid-tile>
+            </mat-grid-list>
+            <div class="stats_container" *ngFor="let stat of filterStats(pokemon.stats);let i=index">
+                <p>  {{stat.stat.name | uppercase}} </p>
+                <mat-progress-bar mode="determinate" [value]="percentages[i]"></mat-progress-bar>
+              
+
+            </div>
+       
+       
+

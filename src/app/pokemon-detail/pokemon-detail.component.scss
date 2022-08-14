@@ -1,0 +1,41 @@
+*{
+  text-align: center;
+  font-weight: 600;
+}
+.stats_container {
+    margin-left: 1rem;
+    *{
+    text-align: left;}
+}
+h1,h2{
+  font-weight: 700;
+}
+.head_info{
+  margin-top: -1.8rem;
+}
+.img_pokemon {
+    width: 160px;
+    height: 200px;
+   margin-left:5.5rem;
+   margin-top: -3rem;
+}
+.ability-container {
+  display: flex;
+  margin-top: -1rem;
+  *{
+  border-radius: 3rem;
+  border-style: solid;
+  border-width: 1.5px;
+  }
+}
+
+.info_grid {
+ 
+
+  :nth-child(4n+3),:nth-child(4n){
+    background-color: #e7e9ed9e;
+    border-radius: 3rem;
+  }
+
+
+}
