@@ -10,7 +10,7 @@ function logger(req,res,next){
 app.use(logger)
 app.get('/',(req,res)=>{
     res.json({ok:true})
-    console.log(process.env.hh);
+    console.log(process.env.BIG_SECRET);
 
 })
 app.get('/greet/:name',(req,res)=>{
