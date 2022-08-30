@@ -20,9 +20,21 @@
     </app-sidenav>
   </mat-drawer>
   <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
-    <mat-grid-tile *ngFor="let pokemon of searchedPokemons">
+    <mat-grid-tile *ngFor="let pokemon of searchedPokemons;let i=index">
       <mat-card class="pokemon-card" (click)="openDialog(pokemon)">
+        <div 
+        *ngIf="logged"
+        (mouseenter)="disableCollectBtn[i]=false"
+        (mouseleave)="disableCollectBtn[i]=true"
+        class="collect-button-container">
+          <button mat-mini-fab  
+          [disabled]="disableCollectBtn[i] && !pokemon.isCollected"
+          (click)="addToCollection(pokemon);$event.stopPropagation()">
+            <mat-icon>bookmark_border</mat-icon>
+          </button>
+        </div>
         <mat-card-header>
+ 
           <img mat-card-image card [src]="pokemon.sprites.front_default" alt="Photo of a pokemon">
         </mat-card-header>
         <mat-card-content>

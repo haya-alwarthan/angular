@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { find, flatMap, from, map, of, reduce, switchMap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,9 +15,10 @@ export class DataService {
     return this.http.get('https://pokeapi.co/api/v2/pokemon?limit='+limit+"&offset="+offset);
   }
 
-  getPokemonDetails(name:string){
+  getPokemonDetails(name:any){
     return this.http.get<any>('https://pokeapi.co/api/v2/pokemon/'+name);
   }
+  
 
   getDataApi(name:string){
     return this.http.get('/api/getData');
@@ -28,5 +30,34 @@ export class DataService {
     return color;
   }
 
+  addToCollection(pokemonId:number){
+  
+    const headers= {'content-type':'application/json'};
+    const body = JSON.stringify({user: JSON.parse(localStorage.getItem('user')!),
+    pokemon_id: pokemonId
+  });
+    console.log("at data service", body)
+    return this.http.post('http://localhost:3000/api/collection/add',body,{'headers':headers})
+  }
 
+
+
+  getCollection(){
+   let currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+   let id = currentUser!.id ||'';
+    return this.http.get('http://localhost:3000/api/collection/'+id)
+  }
+  isCollected(pokemonId:any,logged:boolean){
+    if(logged)
+    return this.getCollection().pipe(
+  switchMap((arr:any)=>from(arr).pipe(
+     find((el:any)=>el.pokemon_id===pokemonId)
+  )
+   )
+  
+   )
+   else 
+   return of(false);
+    
+   }
 }

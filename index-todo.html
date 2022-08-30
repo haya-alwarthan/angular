@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+<body>
+    <h1>Todo list</h1>
+    <ol id="olTodo">
+
+
+    </ol>
+    
+    <input type="text">
+    <button>Delete</button>
+
+    
+
+    <script>
+ readTodos();
+        async function readTodos(){
+            try{
+            const olTodo = document.getElementById("olTodo");
+            const results= await fetch("http://localhost:3000/getData",{method:"GET"})
+            const todos = await results.json();
+            todos.forEach(element => {
+            const liTodo = document.createElement("li");
+            liTodo.textContent=element.task;
+            liTodo.id=element.liTodo;
+            olTodo.appendChild(liTodo)
+
+            const delButton = document.createElement("button");
+            delButton.style
+            });
+       
+        }
+        catch(e){
+            console.log(e)
+        }
+        finally{
+
+        }
+
+    }
+
+    async function deleteTodo(id){
+        try{
+       const results= await fetch("http://localhost:3000/getData",{method:"GET"})
+
+        }
+        catch(e){
+            console.log("error just happened")
+        }
+        
+
+    }
+    </script>
+
+</body>
+</html>

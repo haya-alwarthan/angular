@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -20,6 +21,13 @@ import { MatIconModule } from '@angular/material/icon'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatInputModule} from '@angular/material/input';
 import { AppRoutingModule } from './app-routing.module';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { LoginPopComponent } from './login-pop/login-pop.component';
+import { PokemonCollectionComponent } from './pokemon-collection/pokemon-collection.component';
+import { PokemonsBrowseComponent } from './pokemons-browse/pokemons-browse.component';
+import { AppContextComponent } from './app-context/app-context.component';
+import { BrocastUserService } from './services/brocast-user.service';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -27,7 +35,11 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent,
     PokemonsListComponent,
     PokemonDetailComponent,
-    SidenavComponent
+    SidenavComponent,
+    LoginPopComponent,
+    PokemonCollectionComponent,
+    PokemonsBrowseComponent,
+    AppContextComponent
 
   ],
   imports: [
@@ -45,10 +57,11 @@ import { AppRoutingModule } from './app-routing.module';
     MatIconModule,
     MatPaginatorModule,
     MatInputModule,
-    AppRoutingModule
-    
+    AppRoutingModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [BrocastUserService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
