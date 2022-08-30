@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
@@ -16,7 +17,7 @@ router.get('/account', isAuth, (req, res) => {
 
 router.get('/logout', isAuth, (req, res) => {
     req.session.destroy((()=>{
-        res.redirect('http://localhost:4200/collection')
+        res.redirect(`${process.env.CLIENT_URL}/collection`)
     }))
     // const user={
     //     loggedIn:false

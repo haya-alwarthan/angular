@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { find, flatMap, from, map, of, reduce, switchMap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +38,7 @@ export class DataService {
     pokemon_id: pokemonId
   });
     console.log("at data service", body)
-    return this.http.post('http://localhost:3000/api/collection/add',body,{'headers':headers})
+    return this.http.post(`${environment.apiURL}/collection/add`,body,{'headers':headers})
   }
 
 
@@ -45,7 +46,7 @@ export class DataService {
   getCollection(){
    let currentUser = JSON.parse(localStorage.getItem('user') || '{}');
    let id = currentUser!.id ||'';
-    return this.http.get('http://localhost:3000/api/collection/'+id)
+    return this.http.get(`${environment.apiURL}/collection/`+id)
   }
   isCollected(pokemonId:any,logged:boolean){
     if(logged)

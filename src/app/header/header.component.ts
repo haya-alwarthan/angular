@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { LoginPopComponent } from '../login-pop/login-pop.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class HeaderComponent implements OnInit {
     this.dialogRef.open(LoginPopComponent, { width: '300px', height: '300px' });
   }
   logout(){
- window.location.href=`http://localhost:3000/api/logout`;
+ window.location.href=`${environment.apiURL}/logout`;
 
 }
 }

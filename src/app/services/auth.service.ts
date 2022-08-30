@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { config } from 'dotenv'; 
 import { Subject } from 'rxjs/internal/Subject';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class AuthService {
        
   }
   getUser(){
-    return this.http.get('http://localhost:3000/api/account',{withCredentials:true})
+    return this.http.get(`${environment.apiURL}/account`,{withCredentials:true})
   }
 
 
@@ -33,7 +34,7 @@ export class AuthService {
   }
 
   logout(){
-     this.http.get('http://localhost:3000/api/logout',{withCredentials:true}).subscribe(
+     this.http.get(`${environment.apiURL}/logout`,{withCredentials:true}).subscribe(
       res=>{
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!);
