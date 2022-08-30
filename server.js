@@ -44,6 +44,10 @@ const authRoutes = require('./routes/auth');
 const indexRoute=  require('./routes/indexRoute');
 app.use('/api/auth',authRoutes)
 app.use('/api/',indexRoute)
+app.use(express.static(__dirname + '/dist/'));
+app.get('/*', function(req,res) {
+res.sendFile(path.join(__dirname+
+'/dist/index.html'));});
 app.listen(PORT || 3000,()=>console.log(`Server is listening on port ${PORT}`))
  
 app.use(logger)
