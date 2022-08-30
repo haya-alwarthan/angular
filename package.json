@@ -1,6 +1,9 @@
 {
   "name": "pokedex",
   "version": "0.0.0",
+  "engines": {
+    "node": "16.15.1"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

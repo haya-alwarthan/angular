@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const isAuth = require("../../isAuth");
-const pool = require('../../db-con');
+const isAuth = require("../isAuth");
+const pool = require('../db-con');
 
 
 router.get('/account', isAuth, (req, res) => {
