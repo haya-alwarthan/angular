@@ -9,10 +9,12 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 export class SidenavComponent implements OnInit,OnChanges {
   @Input() pokemons:any[]=[];
   @Output() filteredPokemons = new EventEmitter<any[]>();
+  prevState:any[]=[];
   abilities:any[]=[];
   selectedAbilities:any[] = [];
 
   constructor() {
+    
 
    }
   ngOnChanges(changes: SimpleChanges): void {
@@ -45,6 +47,8 @@ export class SidenavComponent implements OnInit,OnChanges {
 
   filterPokemons(){
     // return the pokemon if one of its abilities exisits on selectedAbilities
+
+    this.prevState=this.pokemons;
   this.filteredPokemons.emit( this.pokemons.filter((element)=>{
    return this.inAbilities(element)
   }
@@ -53,7 +57,7 @@ export class SidenavComponent implements OnInit,OnChanges {
     }
     resetFilters(){
       this.selectedAbilities=[];
-      this.filteredPokemons.emit( this.pokemons)
+      this.filteredPokemons.emit( this.prevState)
     }
     inAbilities(pokemon:any){
       if(this.selectedAbilities.length>0)
