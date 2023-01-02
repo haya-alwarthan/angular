@@ -182,6 +182,16 @@ export class PokemonsListComponent implements OnInit {
 
         }
       )
+      else 
+      this.dataService.removeFromCollection(pokemon.id).subscribe(
+(
+        e => {
+          pokemon.isCollected = false
+          console.log('deleted: ')
+
+        })
+      )
+      
   }
 
 }

@@ -40,6 +40,23 @@ router.post('/collection/add', async(req, res) => {
   }
 });
 
+router.delete('/collection/del/:pokemon_id/:user_id', async(req, res) => {
+  console.log("at index route", req.body)
+  res.json({sent:"ok"})
+ 
+
+try {
+  await(pool.query('delete from collections where pokemon_id=$1 and user_id=$2',
+  [req.params.pokemon_id,req.params.user_id] ));
+}
+catch(e){
+  console.log("insert into collection error",e)
+
+}
+});
+
+
+
 router.get('/collection/:userId', async(req, res) => {
     console.log("at index route, collection PARAMS>>>>>", req.params)
     

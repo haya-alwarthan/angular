@@ -40,6 +40,13 @@ export class DataService {
     console.log("at data service", body)
     return this.http.post(`${environment.apiURL}/collection/add`,body,{'headers':headers})
   }
+  removeFromCollection(pokemonId:number){
+    console.log("remove")
+   
+     let userid = JSON.parse(localStorage.getItem('user')!).id;
+  
+    return this.http.delete(`${environment.apiURL}/collection/del/${pokemonId}/${userid}`)
+  }
 
 
 
