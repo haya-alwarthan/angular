@@ -12,7 +12,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev": "nodemon  server.js",
-    "heroku-postbuild": "ng build — prod"
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
