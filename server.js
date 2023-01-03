@@ -7,7 +7,7 @@ const passport=  require('passport')
 // This is equivlent to X=y.X 
 const {Client}= require("pg");
 
-require('./src/strategies/google')
+require('./strategies/google')
 const client = new Client({
     "user":"user",
     "password":"admin",
@@ -40,11 +40,15 @@ app.use(session(
 app.use(passport.initialize());
 app.use(passport.session());
 
-const authRoutes = require('./src/routes/auth');
-const indexRoute=  require('./src/routes/indexRoute');
+const authRoutes = require('./routes/auth');
+const indexRoute=  require('./routes/indexRoute');
 app.use('/api/auth',authRoutes)
 app.use('/api/',indexRoute)
-app.listen(PORT,()=>console.log(`Server is listening on port ${PORT}`))
+app.use(express.static(__dirname + '/dist/pokedex'));
+app.get('/*', function(req,res) {
+res.sendFile(__dirname+
+'/dist/pokedex/index.html');});
+app.listen(PORT || 3000,()=>console.log(`Server is listening on port ${PORT}`))
  
 app.use(logger)
 

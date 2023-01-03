@@ -1,7 +1,7 @@
 require('dotenv').config();
 const passport =require( "passport");
 const { Strategy : GoogleStrategy} =require( "passport-google-oauth20");
-const pool= require('../../db-con')
+const pool= require('../db-con')
 
 //Used this so I dont get `object failed to get serialized` error, dont get it though
 passport.serializeUser(function(user, done) {

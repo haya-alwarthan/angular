@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
 
@@ -9,17 +10,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-pop.component.scss']
 })
 export class LoginPopComponent implements OnInit {
+  API_ENDPOINT = environment.apiURL;
 
-  constructor(private http:HttpClient) { }
+
+  constructor(private http:HttpClient) {
+   
+   }
 
   ngOnInit(): void {
   }
 
   login(){
    //dotenv.config();
-    window.location.href=`http://localhost:3000/api/auth/google`;
-
-    
+    window.location.href=`${this.API_ENDPOINT}/auth/google`;
 
   }
 }
