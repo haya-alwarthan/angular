@@ -1,0 +1,60 @@
+<mat-drawer-container class="example-container" autosize>
+  <div class="sidenav-content">
+    <button mat-icon-button color="accent" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-form-field class="example-full-width">
+      <span matPrefix> </span>
+      <input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search" (keyup)="updateList()">
+      <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+      </mat-form-field>
+    <mat-paginator 
+    [length]="1000" [pageSize]="8" [pageSizeOptions]="[8, 12, 24, 32]"
+     aria-label="Select page"
+     (page)="onChangePage($event)"
+     >
+    </mat-paginator>
+  </div>
+  <mat-drawer opened #drawer class="example-sidenav" mode="side">
+    <app-sidenav (filteredPokemons)="filterPokemonList($event)" [pokemons]="pokemons">
+    </app-sidenav>
+  </mat-drawer>
+  <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor="let pokemon of searchedPokemons;let i=index">
+      <mat-card class="pokemon-card" (click)="openDialog(pokemon)">
+        <div 
+        *ngIf="logged"
+        (mouseenter)="disableCollectBtn[i]=false"
+        (mouseleave)="disableCollectBtn[i]=true"
+        class="collect-button-container">
+          <button mat-mini-fab  
+          [disabled]="disableCollectBtn[i] && !pokemon.isCollected"
+          (click)="addToCollection(pokemon);$event.stopPropagation()">
+            <mat-icon>bookmark_border</mat-icon>
+          </button>
+        </div>
+        <mat-card-header>
+ 
+          <img mat-card-image card [src]="pokemon.sprites.front_default" alt="Photo of a pokemon">
+        </mat-card-header>
+        <mat-card-content>
+          <div class="card-title">
+            <h2 mat-card-subtitle class="id_heading">N&deg;{{pokemon.id }}</h2>
+            <mat-card-title class="name_heading">{{pokemon.name | titlecase}}</mat-card-title>
+          </div>
+          <div class="type-container">
+            <div  *ngFor="let typ of pokemon.types;let i=index" [class.one]="pokemon.types.length==1 || i==2"
+              [style.backgroundColor]="abilityBacks.get(typ.type.name)"
+              [style.color]="abilityColors.get(typ.type.name)">
+              {{typ.type.name | uppercase}}
+            </div>
+          </div>
+        </mat-card-content>
+
+
+
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</mat-drawer-container>

@@ -1,0 +1,18 @@
+
+<div class="filters-container">
+<h1>Filters</h1>
+<button mat-raised-button (click)="filterPokemons()" color="warn">Apply</button>
+<button mat-raised-button (click)="resetFilters()">Reset</button>
+<br><br>
+<!-- Using Items Input -->
+<ng-select
+  [items]="abilities"
+  bindLabel="name"
+  placeholder="Ability"
+  appendTo="body"
+  [multiple]="true"
+  [closeOnSelect]="false"
+  [(ngModel)]="selectedAbilities">
+
+</ng-select>
+</div>

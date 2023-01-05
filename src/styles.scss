@@ -1,0 +1,49 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+*{
+    padding: 0;
+    margin: 0;
+    font-family: roboto;
+}
+body{
+  
+    background-color: #F6F8FC;
+}
+html, body { height: 100%; }
+.one{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    place-self: center;
+}
+
+.type-container{
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 5px;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    *{
+        border-radius: 5px;
+        text-align: center;
+        padding: 0.5rem;
+        width: fit-content;
+        white-space: nowrap;
+        height: 20px;
+        place-self: center;
+        font-weight: 500;
+    }
+
+}
+
+.id_heading{
+    font-weight: 500;
+    color: gray;
+    font-size: 1rem;
+}
+.name_heading{
+    font-weight: 700;
+    color: rgb(21, 9, 48);
+}

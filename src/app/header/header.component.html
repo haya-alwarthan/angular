@@ -1,0 +1,45 @@
+<mat-toolbar color="warn">
+    <button mat-icon-button >
+        <img class="logo" src="assets/images/pokeball.png" width="30px" height="30px">
+    </button>
+    <span style="font-size: 2rem; font-family: 'Silkscreen'">POKEDEX</span>
+    
+    <ul class="tabs-list">
+        <li routerLink="/browse"  routerLinkActive="active">Browse</li>
+        <li *ngIf="logged" routerLink="/collection"  routerLinkActive="active">My Collection</li>
+    </ul>
+
+    <span class="example-spacer"></span>
+
+
+    
+        <button *ngIf="!logged" mat-button >
+            <span   (click)="popUpLogin()" class="login-span">Login</span>
+           </button>
+       
+           <div *ngIf="logged" class="user-container">
+          <span>{{username}}</span>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>expand_more</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button (click)="logout()"  mat-menu-item>
+              <mat-icon>logout</mat-icon>
+              <span>Logout</span>
+            </button>
+            <button mat-menu-item disabled>
+              <mat-icon>person_pin</mat-icon>
+              <span>Profile</span>
+            </button>
+          </mat-menu>
+           
+           
+
+    </div>  
+
+  
+
+   
+
+   
+  </mat-toolbar>

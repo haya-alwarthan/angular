@@ -1,0 +1,31 @@
+.example-spacer {
+    flex: 8 ;
+  }
+  .login-span{
+    flex: 3 ;
+    font-weight: 600;
+    font-size: larger;
+  }
+  .tabs-list{
+    margin-left: 1rem;
+    flex: 2;
+    display: flex;
+    list-style-type: none;
+   justify-content: space-evenly;
+    *{
+        font-size: smaller;
+        border-radius: 1.5rem;
+        padding:0.4rem
+
+    }
+    *:hover{
+      background-color: rgba(255, 0, 0, 0.402);
+
+    }
+  }
+  .logo{
+    transition: transform .7s ease-in-out;
+  }
+  .logo:hover{
+     transform : rotate(360deg)
+  }
